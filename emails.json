@@ -1,0 +1,64 @@
+{
+    "emails": [
+        {
+            "title": "Urgent: Meeting Agenda for Tomorrow",
+            "sender": "john.doe@company.com",
+            "subject": "Request for Meeting",
+            "text": "Hi, I would like to schedule a meeting with you to discuss the new project. Please let me know your availability."
+        },
+        {
+            "title": "Application for Junior Developer Position",
+            "sender": "jane.doe@company.com",
+            "subject": "Job Application",
+            "text": "Dear Hiring Manager, I am writing to apply for the Junior Developer position advertised on your website. I have attached my resume and cover letter for your consideration."
+        },
+        {
+            "title": "Follow-Up on Proposal for New Product Launch",
+            "sender": "mark.smith@company.com",
+            "subject": "Product Launch",
+            "text": " Hi, I hope this email finds you well. I am following up on the proposal I submitted last week regarding the launch of our new product. Please let me know if you have any questions or concerns."
+        },
+        {
+            "title": "Request for Feedback on Presentation",
+            "sender": "emily.jones@company.com",
+            "subject": "Feedback",
+            "text": "Hi, I wanted to thank you for attending my presentation last week. I would greatly appreciate any feedback you have on the content and delivery."
+        },
+        {
+            "title": "Reminder: Team Building Event Deadline",
+            "sender": "david.wilson@company.com",
+            "subject": "Reminder",
+            "text": "Hi, I wanted to remind you that the deadline for the project is fast approaching. Please let me know if you need any assistance to complete the project on time."
+        },
+        {
+            "title": "Invitation to Event",
+            "sender": "sarah.brown@company.com",
+            "subject": "Invitation",
+            "text": "Hi, I wanted to invite you and your family to the company picnic next month. Please let me know if you plan to attend so we can make the necessary arrangements."
+        },
+        {
+            "title": "Proposal for collaboration",
+            "sender": "peter.nguyen@company.com",
+            "subject": "Collaboration",
+            "text": "Hi, I am reaching out to you to propose a collaboration on the new project we are working on. I believe that our expertise can greatly benefit each other."
+        },
+        {
+            "title": "Request for Assistance",
+            "sender": "kelly.jackson@comany.com",
+            "subject": "Assistance",
+            "text": "Hi, I am currently experiencing an issue with one of our clients and would greatly appreciate your assistance in resolving it."
+        },
+        {
+            "title": "Introduction of New Employee",
+            "sender": "robert.green@company.com",
+            "subject": "New Employee",
+            "text": "Hi, I would like to introduce our new employee, John Doe, to the team. Please extend a warm welcome to him and assist him in getting settled."
+        },
+        {
+            "title": "Announcement of Promotions",
+            "sender": "rachael.smith@company.com",
+            "subject": "Promotions",
+            "text": "Hi, I am pleased to announce the recent promotions within the company. Congratulations to all those who were promoted and we look forward to your continued success."
+        }
+    ]
+}
