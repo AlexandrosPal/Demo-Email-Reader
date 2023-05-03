@@ -129,10 +129,6 @@ class Ui_MainWindow(object):
         self.enumerate.setText(_translate("MainWindow", f"0/{self.queue.length}"))
         self.nextButton.setText(_translate("MainWindow", "Read Next Email"))
         self.stashButton.setText(_translate("MainWindow", "Stash Email"))
-        self.titleLabel.setText(_translate("MainWindow", "Title:"))
-        self.fromLabel.setText(_translate("MainWindow", "From:"))
-        self.textLabel.setText(_translate("MainWindow", "..."))
-        self.subjectLabel.setText(_translate("MainWindow", "Subject:"))
 
 
 if __name__ == "__main__":
