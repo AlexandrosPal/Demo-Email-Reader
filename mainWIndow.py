@@ -1,3 +1,5 @@
+import json
+from queueClass import Queue
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -13,8 +15,6 @@ class Ui_MainWindow(object):
         # Fonts
         font14 = QtGui.QFont()
         font14.setPointSize(14)
-        font15 = QtGui.QFont()
-        font15.setPointSize(15)
         font11 = QtGui.QFont()
         font11.setPointSize(11)
         
@@ -31,26 +31,26 @@ class Ui_MainWindow(object):
         self.enumerate.setObjectName("enumerate")
 
         # Next Button 
-        self.nextButton = QtWidgets.QPushButton(self.centralwidget)
+        self.nextButton = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.nextEmail())
         self.nextButton.setGeometry(QtCore.QRect(230, 260, 141, 21))
         self.nextButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.nextButton.setObjectName("nextButton")
 
         # Stash Button
-        self.stashButton = QtWidgets.QPushButton(self.centralwidget)
+        self.stashButton = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.stashEmail())
         self.stashButton.setGeometry(QtCore.QRect(60, 260, 141, 21))
         self.stashButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.stashButton.setObjectName("stashButton")
 
         # Title Label
         self.titleLabel = QtWidgets.QLabel(self.centralwidget)
-        self.titleLabel.setGeometry(QtCore.QRect(20, 60, 151, 21))
-        self.titleLabel.setFont(font15)
+        self.titleLabel.setGeometry(QtCore.QRect(20, 65, 470, 25))
+        self.titleLabel.setFont(font14)
         self.titleLabel.setObjectName("titleLabel")
 
         # From Label
         self.fromLabel = QtWidgets.QLabel(self.centralwidget)
-        self.fromLabel.setGeometry(QtCore.QRect(20, 90, 151, 31))
+        self.fromLabel.setGeometry(QtCore.QRect(20, 90, 470, 31))
         self.fromLabel.setFont(font11)
         self.fromLabel.setObjectName("fromLabel")
 
@@ -76,6 +76,14 @@ class Ui_MainWindow(object):
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
 
+        # Queue class
+        self.queue = Queue()
+
+        with open('emails.json', 'r') as file:
+            data = json.load(file)
+
+        for email in data['emails']:
+            self.queue.enqueue(email['title'], email['sender'], email['subject'], email['text'])
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -84,14 +92,44 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+    # Function for nextEmail Button
+    def nextEmail(self):
+        try:
+            email = self.queue.dequeue()
+            self.titleLabel.setText(email.title)
+            self.fromLabel.setText(email.sender)
+            self.subjectLabel.setText(email.subject)
+            self.textLabel.setText(email.text)
+            self.enumerate.setText(f"{email.position}/{self.queue.length}")
+        except AttributeError:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle("Error")
+            msg.setText("No more emails.")
+            show = msg.exec_()
+
+    # Function for stashEmail Button
+    def stashEmail(self):
+        try:
+            email = self.queue.stash()
+            self.titleLabel.setText(email.title)
+            self.fromLabel.setText(email.sender)
+            self.subjectLabel.setText(email.subject)
+            self.textLabel.setText(email.text)
+            self.enumerate.setText(f"{email.position}/{self.queue.length}")
+        except AttributeError:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle("Error")
+            msg.setText("No more emails.")
+            show = msg.exec_() 
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.title.setText(_translate("MainWindow", "Demo Email reader"))
-        self.enumerate.setText(_translate("MainWindow", "1/10"))
+        self.enumerate.setText(_translate("MainWindow", f"0/{self.queue.length}"))
         self.nextButton.setText(_translate("MainWindow", "Read Next Email"))
         self.stashButton.setText(_translate("MainWindow", "Stash Email"))
-        self.titleLabel.setText(_translate("MainWindow", "Title"))
+        self.titleLabel.setText(_translate("MainWindow", "Title:"))
         self.fromLabel.setText(_translate("MainWindow", "From:"))
         self.textLabel.setText(_translate("MainWindow", "..."))
         self.subjectLabel.setText(_translate("MainWindow", "Subject:"))
