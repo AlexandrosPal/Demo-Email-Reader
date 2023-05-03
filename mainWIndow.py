@@ -105,6 +105,7 @@ class Ui_MainWindow(object):
             msg = QtWidgets.QMessageBox()
             msg.setWindowTitle("Error")
             msg.setText("No more emails.")
+            msg.setIcon(QtWidgets.QMessageBox.Information)
             show = msg.exec_()
 
     # Function for stashEmail Button
@@ -120,6 +121,8 @@ class Ui_MainWindow(object):
             msg = QtWidgets.QMessageBox()
             msg.setWindowTitle("Error")
             msg.setText("No more emails.")
+            msg.setIcon(QtWidgets.QMessageBox.Information)
+            
             show = msg.exec_() 
 
     def retranslateUi(self, MainWindow):
